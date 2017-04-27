@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/chris/prog'
+let g:netrw_dirhist_2='/home/chris/prog/syslib'
+let g:netrw_dirhist_3='/home/chris/prog/syslib/test'
+let g:netrw_dirhist_4='/home/chris/prog/syslib'
+let g:netrw_dirhist_5='/home/chris/prog/t1'
+let g:netrw_dirhist_6='/home/chris/.vim'
