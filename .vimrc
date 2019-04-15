@@ -2,13 +2,28 @@ set nocompatible              " be iMproved, sssrequired
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
 " " alternatively, pass a path where Vundle should install plugins
 " "call vundle#begin('~/some/path/here')
 "
 " " let Vundle manage Vundle, required
- Plugin 'VundleVim/Vundle.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/c.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/Cpp11-Syntax-Support'
+Plug 'vim-scripts/cSyntaxAfter'
+Plug 'vim-scripts/Vimball'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Yggdroot/LeaderF'
+Plug 'Shougo/echodoc.vim'
+
 "
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
@@ -28,7 +43,7 @@ call vundle#begin()
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 "
 " " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 " " To ignore plugin indent changes, instead use:
 " "filetype plugin on
@@ -44,20 +59,6 @@ filetype plugin indent on    " required
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
 
-Bundle 'Valloric/YouCompleteMe'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/c.vim'
-Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/Cpp11-Syntax-Support'
-Plugin 'vim-scripts/cSyntaxAfter'
-Plugin 'vim-scripts/Conque-GDB'
-Plugin 'vim-scripts/Vimball'
 
 syntax enable
 syntax on
@@ -85,6 +86,7 @@ set nocompatible
 set cursorline
 set laststatus=2
 set hlsearch
+set noshowmode
 
 filetype plugin on
 filetype indent on
@@ -93,7 +95,7 @@ highlight cursorline ctermbg=black guibg=NONE guifg=NONE ctermfg=NONE
 set tags=~/prog/tags
 set autochdir
 
-execute pathogen#infect()
+"execute pathogen#infect()
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -118,3 +120,34 @@ let g:ycm_confirm_extra_conf = 0
 
 "for CSyntaxAfter
 "autocmd! FileType c,cpp,java,php call CSyntaxAfter()
+"
+
+let g:Lf_ShortcutF = '<c-m>'
+let g:Lf_ShortcutB = '<m-n>'
+noremap <c-n> :LeaderfMru<cr>
+noremap <m-m> :LeaderfFunction!<cr>
+noremap <m-n> :LeaderfBuffer<cr>
+noremap <m-g> :LeaderfTag<cr>
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+"
+let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile='.tags'
+let s:vim_tags=expand('~/.cache/tags')
+let g:gutentags_cache_dir=s:vim_tags
+
+let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args=['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args=['--c-kinds=+px']
+
+if !isdirectory(s:vim_tags)
+	silent! call mkdir(s:vim_tags, 'p')
+endif
